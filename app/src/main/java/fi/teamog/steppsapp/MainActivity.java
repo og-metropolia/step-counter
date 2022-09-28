@@ -8,14 +8,29 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
+
+    private ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    // Permission is granted. Continue the action or workflow in your
+                    // app.
+                } else {
+                    Toast.makeText(this, "Permission denied!", Toast.LENGTH_SHORT).show();
+                }
+            });
 
     TextView tv_steps;
 
@@ -33,7 +48,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
+        if (ContextCompat.checkSelfPermission(
+                this, Manifest.permission.ACTIVITY_RECOGNITION) ==
+                PackageManager.PERMISSION_DENIED) {
+            requestPermissionLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION);
+        }
+
     }
+
+
 
     @Override
     protected void onResume() {
@@ -60,9 +83,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (running) {
             tv_steps.setText(String.valueOf(event.values[0]));
         }
-
     }
-
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
