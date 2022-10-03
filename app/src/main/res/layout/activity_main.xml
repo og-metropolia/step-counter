@@ -5,6 +5,7 @@
     android:id="@+id/activity.main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#8AC7DB"
     android:paddingLeft="16dp"
     android:paddingTop="16dp"
     android:paddingRight="16dp"
@@ -35,4 +36,15 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_info"
         tools:ignore="MissingConstraints" />
 
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.83" />
 </android.support.constraint.ConstraintLayout>
