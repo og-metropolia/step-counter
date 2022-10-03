@@ -1,7 +1,10 @@
 package fi.teamog.steppsapp;
 
+import android.util.Log;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -48,4 +51,36 @@ public class StepData {
     public void addToday() {
         days.put(isoDateFormat.format(new Date()), new Day());
     }
+
+    /**
+     * Gets amount of steps between two ISO dates. Chronological order of the two dates given does not matter.
+     * @param firstDateIso a date in iso format
+     * @param secondDateIso a date in iso format
+     * @return amount of steps between the two dates
+     */
+    public int getPeriodSteps(String firstDateIso, String secondDateIso) {
+        LocalDate firstDay = LocalDate.parse(firstDateIso);
+        LocalDate secondDay = LocalDate.parse(secondDateIso);
+
+        LocalDate startDate;
+        LocalDate endDate;
+
+        if (firstDay.compareTo(secondDay) > 0) {
+            startDate = secondDay;
+            endDate = firstDay;
+        } else {
+            startDate = firstDay;
+            endDate = secondDay;
+        }
+
+        LocalDate currentDate = startDate;
+        int totalSteps = 0;
+        while (endDate.compareTo(currentDate) >= 0) {
+            totalSteps += StepData.getInstance().getDay(currentDate.toString()).getDaySteps();
+            currentDate = currentDate.plusDays(1);
+        }
+
+        return totalSteps;
+    }
+
 }
