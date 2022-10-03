@@ -1,6 +1,8 @@
 package fi.teamog.steppsapp;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -64,9 +66,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         if (ContextCompat.checkSelfPermission(
-                /**
-                 * This sensor requires permission android.permission.ACTIVITY_RECOGNITION.
-                 */
                 this, Manifest.permission.ACTIVITY_RECOGNITION) ==
                 PackageManager.PERMISSION_DENIED) {
             requestPermissionLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION);
