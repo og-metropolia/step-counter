@@ -1,5 +1,8 @@
 package fi.teamog.steppsapp;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -9,6 +12,7 @@ import java.util.HashMap;
 public class StepData {
     private static final StepData ourInstance = new StepData();
     private static HashMap<String, Day> days = new HashMap<>();
+    private static final DateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * Access to singleton instance of StepData.
@@ -36,5 +40,12 @@ public class StepData {
      */
     public Day getDay(String dateIso) {
         return days.getOrDefault(dateIso, null);
+    }
+
+    /**
+     * Adds current day to the HashMap with ISO date as the key and Day object as the value.
+     */
+    public void addToday() {
+        days.put(isoDateFormat.format(new Date()), new Day());
     }
 }
