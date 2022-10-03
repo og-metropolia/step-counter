@@ -38,18 +38,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.83" />
+        app:layout_constraintTop_toBottomOf="@+id/ViewOtsikko" />
 
     <!--Askelmittariteksti-->
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/ViewOtsikko"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
         android:layout_marginBottom="1dp"
-        android:text="Askelmittari"
+        android:text="@string/ViewOtsikko"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/imageViewLogo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,12 +61,40 @@
         android:layout_width="104dp"
         android:layout_height="160dp"
         android:layout_marginBottom="426dp"
-        android:tint="#03A9F4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/a" />
+        app:layout_constraintTop_toBottomOf="@+id/ViewOtsikko"
+        app:srcCompat="@drawable/a"
+        app:tint="#03A9F4" />
+
+    <Button
+        android:id="@+id/buttonPaivaKirja"
+        android:layout_width="114dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="120dp"
+        android:backgroundTint="#03A9F4"
+        android:onClick="@string/ButtonPaivakirja"
+        android:text="@string/ButtonPaivakirja"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonKalorit" />
+
+    <Button
+        android:id="@+id/buttonKalorit"
+        android:layout_width="114dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="120dp"
+        android:backgroundTint="#03A9F4"
+        android:onClick="@string/buttonKalorit"
+        android:text="@string/buttonKalorit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonPaivaKirja"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
