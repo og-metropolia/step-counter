@@ -30,4 +30,16 @@ public class Day {
     public void addSteps(int hour, int newSteps) {
         stepsByHour.put(hour, stepsByHour.getOrDefault(hour, 0) + newSteps);
     }
+
+    /**
+     * Gets total amount of steps in the day.
+     * @return amount of steps
+     */
+    public int getDaySteps() {
+        int daySteps = 0;
+        for (int hour = 0; hour < 23; hour++) {
+            daySteps += this.getHourSteps(hour);
+        }
+        return daySteps;
+    }
 }
