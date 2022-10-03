@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Steppsapp</string>
-    <string name="buttonKalorit">Raportti</string>
-    <string name="ButtonPaivakirja">Päiväkirja</string>
-    <string name="ViewOtsikko">Askelmittari</string>
+    <string name="ButtonDiary">Päiväkirja</string>
+    <string name="ViewHeader">Askelmittari</string>
+    <string name="buttonReport">Raportti</string>
+
 </resources>

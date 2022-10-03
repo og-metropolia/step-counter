@@ -19,17 +19,17 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewCircle"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewCircle"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageViewCircle"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCircle"
         tools:ignore="MissingConstraints" />
 
     <!--Askelmäärän ympärillä oleva ympyrä-->
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewCircle"
         android:layout_width="156dp"
         android:layout_height="152dp"
         android:layout_marginBottom="109dp"
@@ -38,17 +38,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ViewOtsikko" />
+        app:layout_constraintTop_toBottomOf="@+id/ViewHeader" />
 
     <!--Askelmittariteksti-->
 
     <TextView
-        android:id="@+id/ViewOtsikko"
+        android:id="@+id/ViewHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
         android:layout_marginBottom="1dp"
-        android:text="@string/ViewOtsikko"
+        android:text="@string/ViewHeader"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/imageViewLogo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,35 +65,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ViewOtsikko"
+        app:layout_constraintTop_toBottomOf="@+id/ViewHeader"
         app:srcCompat="@drawable/a"
-        app:tint="#03A9F4" />
+        app:tint="#03A9F4"
+        tools:ignore="ImageContrastCheck" />
 
     <Button
-        android:id="@+id/buttonPaivaKirja"
+        android:id="@+id/buttonDiary"
         android:layout_width="114dp"
         android:layout_height="80dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="120dp"
         android:backgroundTint="#03A9F4"
-        android:onClick="@string/ButtonPaivakirja"
-        android:text="@string/ButtonPaivakirja"
+        android:onClick="@string/ButtonDiary"
+        android:text="@string/ButtonDiary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonKalorit" />
+        app:layout_constraintStart_toEndOf="@+id/buttonReport" />
 
     <Button
-        android:id="@+id/buttonKalorit"
+        android:id="@+id/buttonReport"
         android:layout_width="114dp"
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="120dp"
         android:backgroundTint="#03A9F4"
-        android:onClick="@string/buttonKalorit"
-        android:text="@string/buttonKalorit"
+        android:onClick="@string/buttonReport"
+        android:text="@string/buttonReport"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonPaivaKirja"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDiary"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
