@@ -23,15 +23,11 @@ public class Day {
     }
 
     /**
-     * Adds steps to the given hour's total.
+     * Adds steps to the given hour's previous amount.
      * @param hour hour of the day, value between 0-23
      * @param newSteps steps that will be added
      */
     public void addSteps(int hour, int newSteps) {
-        int prevSteps = 0;
-        if(stepsByHour.containsKey(hour)) {
-            prevSteps = stepsByHour.get(hour);
-        }
-        stepsByHour.put(hour, prevSteps + newSteps);
+        stepsByHour.put(hour, stepsByHour.getOrDefault(hour, 0) + newSteps);
     }
 }
