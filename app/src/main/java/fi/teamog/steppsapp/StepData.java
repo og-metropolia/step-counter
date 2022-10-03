@@ -1,7 +1,7 @@
 package fi.teamog.steppsapp;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -14,7 +14,8 @@ import java.util.HashMap;
  */
 public class StepData {
     private static final StepData ourInstance = new StepData();
-    private static HashMap<String, Day> days = new HashMap<>();
+    private static final HashMap<String, Day> days = new HashMap<>();
+    @SuppressLint("SimpleDateFormat")
     private static final DateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
@@ -59,18 +60,18 @@ public class StepData {
      * @return amount of steps between the two dates
      */
     public int getPeriodSteps(String firstDateIso, String secondDateIso) {
-        LocalDate firstDay = LocalDate.parse(firstDateIso);
-        LocalDate secondDay = LocalDate.parse(secondDateIso);
+        LocalDate firstDate = LocalDate.parse(firstDateIso);
+        LocalDate secondDate = LocalDate.parse(secondDateIso);
 
         LocalDate startDate;
         LocalDate endDate;
 
-        if (firstDay.compareTo(secondDay) > 0) {
-            startDate = secondDay;
-            endDate = firstDay;
+        if (firstDate.compareTo(secondDate) > 0) {
+            startDate = secondDate;
+            endDate = firstDate;
         } else {
-            startDate = firstDay;
-            endDate = secondDay;
+            startDate = firstDate;
+            endDate = secondDate;
         }
 
         LocalDate currentDate = startDate;
