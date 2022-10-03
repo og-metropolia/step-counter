@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+    <!--@author Taavi Nätynki-->
+
+
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,7 +16,7 @@
     android:paddingBottom="16dp"
     tools:context=".MainActivity">
 
-
+    <!--Askelmittarin askelmäärä-->
     <TextView
         android:id="@+id/tv_steps"
         android:layout_width="wrap_content"
@@ -25,6 +29,8 @@
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         tools:ignore="MissingConstraints" />
+
+    <!--Askelmäärän ympärillä oleva ympyrä-->
 
     <ImageView
         android:id="@+id/imageView"
@@ -39,6 +45,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.83" />
 
+    <!--Askelmittariteksti-->
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -47,16 +55,18 @@
         android:layout_marginBottom="1dp"
         android:text="Askelmittari"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewLogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--Askelmittari Logo-->
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageViewLogo"
         android:layout_width="104dp"
         android:layout_height="160dp"
         android:layout_marginBottom="426dp"
+        android:tint="#03A9F4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
