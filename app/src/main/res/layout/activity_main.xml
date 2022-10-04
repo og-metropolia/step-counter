@@ -21,7 +21,6 @@
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewCircle"
         app:layout_constraintEnd_toEndOf="@+id/imageViewCircle"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/imageViewCircle"
         app:layout_constraintTop_toTopOf="@+id/imageViewCircle"
         tools:ignore="MissingConstraints" />
@@ -30,15 +29,16 @@
 
     <ImageView
         android:id="@+id/imageViewCircle"
-        android:layout_width="156dp"
-        android:layout_height="152dp"
+        android:layout_width="182dp"
+        android:layout_height="181dp"
         android:layout_marginBottom="109dp"
         android:background="@drawable/circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ViewHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/ViewHeader"
+        android:contentDescription="@string/todo" />
 
     <!--Askelmittariteksti-->
 
@@ -70,32 +70,47 @@
         app:tint="#03A9F4"
         tools:ignore="ImageContrastCheck" />
 
-    <Button
-        android:id="@+id/buttonDiary"
-        android:layout_width="114dp"
-        android:layout_height="80dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="120dp"
-        android:backgroundTint="#03A9F4"
-        android:onClick="@string/ButtonDiary"
-        android:text="@string/ButtonDiary"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabView"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="295dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonReport" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:tabIndicatorColor="#03A9F4">
 
-    <Button
-        android:id="@+id/buttonReport"
-        android:layout_width="114dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="120dp"
-        android:backgroundTint="#03A9F4"
-        android:onClick="@string/buttonReport"
-        android:text="@string/buttonReport"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonDiary"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabDiary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tabDiary" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabReport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tabReport" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="93dp"
+        android:layout_height="93dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewCircle"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewCircle"
+        app:layout_constraintStart_toStartOf="@+id/imageViewCircle"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCircle"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/runningshoe"
+        android:contentDescription="TODO" />
+
+    <!--Nappi päiväkirjalle-->
+
+    <!--Nappi raportille-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

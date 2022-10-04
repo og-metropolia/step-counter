@@ -7,10 +7,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Build;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,7 +26,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     /**
      * Asks for permission
-     * If accees continue
+     * If access continue
      * Else denied toasts text; "Permission denied!".
      */
     private ActivityResultLauncher<String> requestPermissionLauncher =
