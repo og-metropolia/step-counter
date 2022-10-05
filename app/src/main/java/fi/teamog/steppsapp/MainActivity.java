@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             requestPermissionLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION);
         }
 
+
 //        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 //            @Override
 //            /**

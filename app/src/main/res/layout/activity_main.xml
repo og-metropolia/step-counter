@@ -70,41 +70,48 @@
         app:tint="#03A9F4"
         tools:ignore="ImageContrastCheck" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabView"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="295dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:tabIndicatorColor="#03A9F4">
+    <androidx.fragment.app.FragmentContainerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_container_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="fi.teamog.steppsapp.NavigationFragment" />
 
-        <!--Tabit-->
+<!--    <com.google.android.material.tabs.TabLayout-->
+<!--        android:id="@+id/tabView"-->
+<!--        android:layout_width="409dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="3dp"-->
+<!--        android:layout_marginEnd="3dp"-->
+<!--        android:layout_marginBottom="295dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/imageView"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.0"-->
+<!--        app:tabIndicatorColor="#03A9F4">-->
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabDiary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tabDiary" />
+<!--        &lt;!&ndash;Tabit&ndash;&gt;-->
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabSteps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tabSteps" />
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:id="@+id/tabDiary"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/tabDiary" />-->
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabReport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tabReport" />
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:id="@+id/tabSteps"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/tabSteps" />-->
 
-    </com.google.android.material.tabs.TabLayout>
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:id="@+id/tabReport"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/tabReport" />-->
+
+<!--    </com.google.android.material.tabs.TabLayout>-->
 
     <!--Kengän kuva-->
     <ImageView
