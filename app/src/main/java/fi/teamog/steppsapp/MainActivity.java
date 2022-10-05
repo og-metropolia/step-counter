@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        StepData.getInstance().loadPreviousData(this);
+
         /**
          * Calling the TextView that we made in activity_main.xml
          * by the id given to that TextVie
@@ -68,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 PackageManager.PERMISSION_DENIED) {
             requestPermissionLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION);
         }
+
 
     }
 
@@ -95,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onPause() {
         super.onPause();
         running = false;
+        StepData.getInstance().saveData(this);
         // If you unregister hardware will stop detecting steps
         //sensorManager.unregisterListener(this);
     }
