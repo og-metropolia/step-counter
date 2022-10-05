@@ -29,8 +29,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
-    private TabLayout tabLayout;
-    private Intent intentMain;
+
     /**
      * Asks for permission
      * If access continue
@@ -75,44 +74,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 PackageManager.PERMISSION_DENIED) {
             requestPermissionLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION);
         }
-
-
-//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            /**
-//             * Toiminta joka tapahtuu tabia painaessa
-//             */
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                if (tab.getPosition() == 0) {
-//                    intentMain = new Intent(MainActivity.this, MainActivity.class);
-//
-//                }
-////                if (tab.getPosition() == 1) {
-////                    intentMain = new Intent(MainActivity.this,
-////                            Diary.class);
-////                    MainActivity.this.startActivity(intentMain);
-////                }
-////                if (tab.getPosition() ==2) {
-////                    intentMain = new Intent(MainActivity.this,
-////                            StepData.class);
-////                    MainActivity.this.startActivity(intentMain);
-////                }
-//                /**
-//                 * Ota koodi käyttöön, kun tabien nimemäminen ok
-//                 */
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
-
 
     }
 
