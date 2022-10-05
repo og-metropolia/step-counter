@@ -4,5 +4,6 @@
     <string name="tabDiary">Päiväkirja</string>
     <string name="tabReport">Raportti</string>
     <string name="todo">TODO</string>
+    <string name="tabSteps">Askeleet</string>
 
 </resources>
