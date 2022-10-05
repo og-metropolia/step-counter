@@ -2,6 +2,7 @@ package fi.teamog.steppsapp;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -61,6 +62,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
          * Calling the TextView that we made in activity_main.xml
          * by the id given to that TextVie
          */
+
+        Intent intent = new Intent(this, Diary.class);
+
+        startActivity(intent);
+
         tv_steps = (TextView)  findViewById (R.id.tv_steps);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);

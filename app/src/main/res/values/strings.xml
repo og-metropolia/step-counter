@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Steppsapp</string>
+    <string name="diary_preference_key">fi.teamog.steppsapp.DIARY_DATA</string>
 </resources>
