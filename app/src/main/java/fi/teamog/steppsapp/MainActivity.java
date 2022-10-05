@@ -29,6 +29,9 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
+    TextView tv_steps;
+    SensorManager sensorManager;
+    boolean running = false;
 
     /**
      * Asks for permission
@@ -39,32 +42,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (!isGranted) {
                     Toast.makeText(this, "Permission denied!", Toast.LENGTH_SHORT).show();
-
-                    // Permission is granted. Continue the action or workflow in your
-                    // app.
                 }
             });
 
-    TextView tv_steps;
     /**
-     * Adding a context of SENSOR_SERVICE aas Sensor Manager
+     * Calling the TextView that we made in activity_main.xml
+     * by the id given to that TextVie
      */
-    SensorManager sensorManager;
-
-    /**
-     * Creating a variable which will give the running status
-     * and initially given the boolean value as false
-     */
-    boolean running = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /**
-         * Calling the TextView that we made in activity_main.xml
-         * by the id given to that TextVie
-         */
         tv_steps = (TextView)  findViewById (R.id.tv_steps);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -77,22 +65,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
-
-
+    /**
+     * Returns the number of steps taken by the user since the last reboot while activated
+     */
     @Override
     protected void onResume() {
         super.onResume();
         running = true;
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        /**
-         * Returns the number of steps taken by the user since the last reboot while activated
-         */
+
         if (countSensor != null) {
             sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
         } else {
-            /**
-             * This will give a toast message to the user if there is no sensor in the device
-             */
             Toast.makeText(this, "Sensor not found!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -101,21 +85,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onPause() {
         super.onPause();
         running = false;
-        // If you unregister hardware will stop detecting steps
-        //sensorManager.unregisterListener(this);
     }
 
+    /**
+     * Current steps are calculated by taking the difference of total steps
+     * and previous steps
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (running) {
-            /**
-             * Current steps are calculated by taking the difference of total steps
-             * and previous steps
-             */
+
             tv_steps.setText(String.valueOf((int)(event.values[0])));
-            /**
-             * This will set steps to tv_steps
-             */
         }
     }
     @Override
