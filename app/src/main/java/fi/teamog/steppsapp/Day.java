@@ -1,5 +1,9 @@
 package fi.teamog.steppsapp;
 
+import android.icu.text.SimpleDateFormat;
+import android.util.Log;
+
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -10,7 +14,6 @@ public class Day {
     private HashMap<Integer, Integer> stepsByHour = new HashMap<>();
 
     public Day() {
-
     }
 
     /**
@@ -41,5 +44,21 @@ public class Day {
             daySteps += this.getHourSteps(hour);
         }
         return daySteps;
+    }
+
+    public void updateCurrentHourSteps(int currentStepTotal) {
+        int newSteps = currentStepTotal - StepData.getInstance().getLifetimeStepTotal();
+        this.addSteps(this.getCurrentHour(), newSteps);
+
+        StepData.getInstance().setLifetimeStepTotal(StepData.getInstance().getLifetimeStepTotal() + newSteps);
+
+        Log.d("STEPS", "lifetime steps: "+StepData.getInstance().getLifetimeStepTotal());
+        Log.d("STEPS", "newSteps: "+newSteps);
+        Log.d("STEPS", "currentStepTotal: "+currentStepTotal);
+        Log.d("STEPS", "hour steps after update: " + this.getHourSteps(this.getCurrentHour()));
+    }
+
+    public int getCurrentHour() {
+        return Integer.parseInt(StepData.getInstance().hoursOnly.format(new Date()));
     }
 }

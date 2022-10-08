@@ -12,6 +12,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -62,11 +63,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /**
-         * Calling the TextView that we made in activity_main.xml
-         * by the id given to that TextVie
-         */
+
+        Log.d("STEPS", "--------------------------onCreate()--------------------------");
+
+        StepData.getInstance().loadPreviousData(this);
+
         tv_steps = (TextView)  findViewById (R.id.tv_steps);
+        tv_steps.setText(String.valueOf(StepData.getInstance().getToday().getDaySteps()));
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
@@ -75,7 +78,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 PackageManager.PERMISSION_DENIED) {
             requestPermissionLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION);
         }
-
+        
+        StepData.getInstance().setLatestDateToToday();
 
 //        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 //            @Override
@@ -113,10 +117,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //            }
 //        });
 
-
     }
-
-
 
     @Override
     protected void onResume() {
@@ -140,21 +141,36 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onPause() {
         super.onPause();
         running = false;
+        StepData.getInstance().saveData(this);
         // If you unregister hardware will stop detecting steps
         //sensorManager.unregisterListener(this);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        Log.d("STEPS", "-----------------------onSensorChanged()-----------------------");
         if (running) {
-            /**
-             * Current steps are calculated by taking the difference of total steps
-             * and previous steps
-             */
-            tv_steps.setText(String.valueOf((int)(event.values[0])));
-            /**
-             * This will set steps to tv_steps
-             */
+            int steps = 0;
+            steps = (int)(event.values[0]);
+
+            if (StepData.getInstance().getLifetimeStepTotal() == 0) {
+                StepData.getInstance().setLifetimeStepTotal(steps);
+                return;
+            }
+
+            if (StepData.getInstance().checkForNewDay()) {
+                    Log.d("STEPS", "new day");
+                Toast.makeText(this, "new day", Toast.LENGTH_SHORT).show();
+                    StepData.getInstance().setLatestDateToToday();
+                    steps = 0;
+            }
+
+            tv_steps.setText(String.valueOf(StepData.getInstance().getToday().getDaySteps()));
+
+            StepData.getInstance().getToday().updateCurrentHourSteps(steps);
+            StepData.getInstance().saveData(this);
+
+            Toast.makeText(this, "new steps", Toast.LENGTH_SHORT).show();
         }
     }
     @Override
