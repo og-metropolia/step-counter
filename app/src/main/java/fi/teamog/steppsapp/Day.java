@@ -40,7 +40,7 @@ public class Day {
      */
     public int getDaySteps() {
         int daySteps = 0;
-        for (int hour = 0; hour < 23; hour++) {
+        for (int hour = 0; hour <= 23; hour++) {
             daySteps += this.getHourSteps(hour);
         }
         return daySteps;
