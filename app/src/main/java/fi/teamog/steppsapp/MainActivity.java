@@ -14,7 +14,6 @@ import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,11 +63,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("STEPS", "--------------------------onCreate()--------------------------");
-
         StepData.getInstance().loadPreviousData(this);
 
-        tv_steps = (TextView)  findViewById (R.id.tv_steps);
+        tv_steps = findViewById (R.id.tv_steps);
         tv_steps.setText(String.valueOf(StepData.getInstance().getToday().getDaySteps()));
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -79,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             requestPermissionLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION);
         }
         
-        StepData.getInstance().setLatestDateToToday();
+        StepData.getInstance().updateLatestDate();
 
 //        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 //            @Override
@@ -148,29 +145,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        Log.d("STEPS", "-----------------------onSensorChanged()-----------------------");
         if (running) {
-            int steps = 0;
-            steps = (int)(event.values[0]);
+            int steps = (int)(event.values[0]);
 
-            if (StepData.getInstance().getLifetimeStepTotal() == 0) {
-                StepData.getInstance().setLifetimeStepTotal(steps);
+            if (StepData.getInstance().getStepsSinceReboot() == 0) {
+                StepData.getInstance().setStepsSinceReboot(steps);
                 return;
             }
 
-            if (StepData.getInstance().checkForNewDay()) {
-                    Log.d("STEPS", "new day");
-                Toast.makeText(this, "new day", Toast.LENGTH_SHORT).show();
-                    StepData.getInstance().setLatestDateToToday();
-                    steps = 0;
+            if (StepData.getInstance().checkIfNewDate()) {
+                StepData.getInstance().updateLatestDate();
+                steps = 0;
             }
 
             tv_steps.setText(String.valueOf(StepData.getInstance().getToday().getDaySteps()));
 
             StepData.getInstance().getToday().updateCurrentHourSteps(steps);
             StepData.getInstance().saveData(this);
-
-            Toast.makeText(this, "new steps", Toast.LENGTH_SHORT).show();
         }
     }
     @Override

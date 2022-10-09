@@ -2,7 +2,6 @@ package fi.teamog.steppsapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -31,9 +30,9 @@ public class StepData {
     private static final DateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private static final String FILE_NAME = "step_data.json";
     @SuppressLint("SimpleDateFormat")
-    public final android.icu.text.SimpleDateFormat hoursOnly = new android.icu.text.SimpleDateFormat("HH");
+    public final android.icu.text.SimpleDateFormat hoursOnlyFormat = new android.icu.text.SimpleDateFormat("HH");
     private String latestDate;
-    private int lifetimeStepTotal = 0;
+    private int stepsSinceReboot = 0;
 
     /**
      * Access to singleton instance of StepData.
@@ -92,6 +91,7 @@ public class StepData {
         LocalDate startDate;
         LocalDate endDate;
 
+        // sets startDate to always be the earlier date and endDate to be the later one
         if (firstDate.compareTo(secondDate) > 0) {
             startDate = secondDate;
             endDate = firstDate;
@@ -100,11 +100,12 @@ public class StepData {
             endDate = secondDate;
         }
 
-        LocalDate currentDate = startDate;
+        LocalDate indexDate = startDate;
+
         int totalSteps = 0;
-        while (endDate.compareTo(currentDate) >= 0) {
-            totalSteps += StepData.getInstance().getDay(currentDate.toString()).getDaySteps();
-            currentDate = currentDate.plusDays(1);
+        while (endDate.compareTo(indexDate) >= 0) {
+            totalSteps += StepData.getInstance().getDay(indexDate.toString()).getDaySteps();
+            indexDate = indexDate.plusDays(1);
         }
 
         return totalSteps;
@@ -118,7 +119,6 @@ public class StepData {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(FILE_NAME, Context.MODE_PRIVATE));
             outputStreamWriter.write(new Gson().toJson(days));
-            Log.d("STEPS", "data that was written to file: "+new Gson().toJson(days));
             outputStreamWriter.close();
         }
         catch (Exception e) {
@@ -163,30 +163,47 @@ public class StepData {
         TypeToken<HashMap<String, Day>> token = new TypeToken<HashMap<String, Day>>() {};
         if (!this.readData(context).equals("")) {
             days = new Gson().fromJson(this.readData(context), token.getType());
-            Log.d("STEPS", "StepData was replaced with the following data: "+this.readData(context));
         } else {
             days = new HashMap<>();
-            Log.d("STEPS", "StepData was reset because no data was found from file");
         }
     }
 
+    /**
+     * Getter for isoDateFormat.
+     * @return isoDateFormat, for example "2007-07-17"
+     */
     public DateFormat getIsoDateFormat() {
         return isoDateFormat;
     }
 
-    public void setLifetimeStepTotal(int lifetimeSteps) {
-        this.lifetimeStepTotal = lifetimeSteps;
+    /**
+     * Setter for stepsSinceReboot.
+     * @param stepsSinceReboot steps that the device has taken since the last reboot
+     */
+    public void setStepsSinceReboot(int stepsSinceReboot) {
+        this.stepsSinceReboot = stepsSinceReboot;
     }
 
-    public int getLifetimeStepTotal() {
-        return this.lifetimeStepTotal;
+    /**
+     * Getter for stepsSinceReboot.
+     * @return stepsSinceReboot
+     */
+    public int getStepsSinceReboot() {
+        return this.stepsSinceReboot;
     }
 
-    public void setLatestDateToToday() {
+    /**
+     * Updates latestDate with current date.
+     */
+    public void updateLatestDate() {
         latestDate = isoDateFormat.format(new Date());
     }
 
-    public boolean checkForNewDay() {
+    /**
+     * Check if date has changed since last check.
+     * @return true if new date, false otherwise
+     */
+    public boolean checkIfNewDate() {
         Date todayDate = new Date();
         Date prevDate = null;
         try {

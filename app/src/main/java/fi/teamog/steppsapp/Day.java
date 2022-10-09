@@ -1,8 +1,5 @@
 package fi.teamog.steppsapp;
 
-import android.icu.text.SimpleDateFormat;
-import android.util.Log;
-
 import java.util.Date;
 import java.util.HashMap;
 
@@ -11,7 +8,7 @@ import java.util.HashMap;
  * @author Leo Härkönen
  */
 public class Day {
-    private HashMap<Integer, Integer> stepsByHour = new HashMap<>();
+    private final HashMap<Integer, Integer> stepsByHour = new HashMap<>();
 
     public Day() {
     }
@@ -46,19 +43,21 @@ public class Day {
         return daySteps;
     }
 
-    public void updateCurrentHourSteps(int currentStepTotal) {
-        int newSteps = currentStepTotal - StepData.getInstance().getLifetimeStepTotal();
+    /**
+     * Adds new steps to the current hour's total.
+     * @param currentLifetimeSteps Current amount of steps from last reboot of the device. This will be compared to the previous total giving the amount of new steps.
+     */
+    public void updateCurrentHourSteps(int currentLifetimeSteps) {
+        int newSteps = currentLifetimeSteps - StepData.getInstance().getStepsSinceReboot();
         this.addSteps(this.getCurrentHour(), newSteps);
-
-        StepData.getInstance().setLifetimeStepTotal(StepData.getInstance().getLifetimeStepTotal() + newSteps);
-
-        Log.d("STEPS", "lifetime steps: "+StepData.getInstance().getLifetimeStepTotal());
-        Log.d("STEPS", "newSteps: "+newSteps);
-        Log.d("STEPS", "currentStepTotal: "+currentStepTotal);
-        Log.d("STEPS", "hour steps after update: " + this.getHourSteps(this.getCurrentHour()));
+        StepData.getInstance().setStepsSinceReboot(currentLifetimeSteps);
     }
 
+    /**
+     * Getter for steps within the current hour today.
+     * @return amount of steps in the current hour
+     */
     public int getCurrentHour() {
-        return Integer.parseInt(StepData.getInstance().hoursOnly.format(new Date()));
+        return Integer.parseInt(StepData.getInstance().hoursOnlyFormat.format(new Date()));
     }
 }
