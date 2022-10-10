@@ -21,7 +21,6 @@ import com.google.android.material.tabs.TabLayout;
 
 /**
  * @author Yamir Haque
- * @author Adrian Gashi
  * Added SensorEventListener the MainActivity class
  * Implement all the members in the class MainActivity
  * after adding SensorEventListener
@@ -31,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private TabLayout tabLayout;
     private Intent intentMain;
+    TextView tvSteps;
+    SensorManager sensorManager;
+    boolean isMoving = false;
+
     /**
      * Asks for permission
      * If access continue
@@ -40,23 +43,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (!isGranted) {
                     Toast.makeText(this, "Permission denied!", Toast.LENGTH_SHORT).show();
-
-                    // Permission is granted. Continue the action or workflow in your
-                    // app.
                 }
             });
-
-    TextView tv_steps;
-    /**
-     * Adding a context of SENSOR_SERVICE aas Sensor Manager
-     */
-    SensorManager sensorManager;
-
-    /**
-     * Creating a variable which will give the running status
-     * and initially given the boolean value as false
-     */
-    boolean running = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +56,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //        Intent intent = new Intent(this, DiaryActivity.class);
 //        startActivity(intent);
 
-        tv_steps = findViewById (R.id.tv_steps);
-        tv_steps.setText(String.valueOf(StepData.getInstance().getToday().getDaySteps()));
+        tvSteps = findViewById (R.id.tv_steps);
+        tvSteps.setText(String.valueOf(StepData.getInstance().getToday().getDaySteps()));
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
@@ -126,17 +114,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onResume() {
         super.onResume();
-        running = true;
+        isMoving = true;
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        /**
-         * Returns the number of steps taken by the user since the last reboot while activated
-         */
+
         if (countSensor != null) {
             sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
         } else {
-            /**
-             * This will give a toast message to the user if there is no sensor in the device
-             */
             Toast.makeText(this, "Sensor not found!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -144,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onPause() {
         super.onPause();
-        running = false;
+        isMoving = false;
         StepData.getInstance().saveData(this);
         // If you unregister hardware will stop detecting steps
         //sensorManager.unregisterListener(this);
@@ -152,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (running) {
+        if (isMoving) {
             int steps = (int)(event.values[0]);
 
             if (StepData.getInstance().getStepsSinceReboot() == 0) {
@@ -165,8 +148,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 steps = 0;
             }
 
-            tv_steps.setText(String.valueOf(StepData.getInstance().getToday().getDaySteps()));
-
+            tvSteps.setText(String.valueOf(StepData.getInstance().getToday().getDaySteps()));
             StepData.getInstance().getToday().updateCurrentHourSteps(steps);
             StepData.getInstance().saveData(this);
         }
