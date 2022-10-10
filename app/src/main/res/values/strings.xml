@@ -5,8 +5,9 @@
     <string name="tabReport">Raportti</string>
     <string name="todo">TODO</string>
     <string name="tabSteps">Askeleet</string>
-    <string name="textViewAverage">Keskiarvo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="TextViewLastThreeDays">Viimeiset 3 päivää:</string>
+    <string name="TextViewMonthlyAvg">Viimeiset 30 päivää:</string>
 
 </resources>
