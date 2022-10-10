@@ -65,10 +65,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         StepData.getInstance().loadPreviousData(this);
 
+        Intent intent = new Intent(this, ReportActivity.class);
+        startActivity(intent);
+
         tv_steps = findViewById (R.id.tv_steps);
         tv_steps.setText(String.valueOf(StepData.getInstance().getToday().getDaySteps()));
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        tabLayout = findViewById(R.id.tabView);
 
         if (ContextCompat.checkSelfPermission(
                 this, Manifest.permission.ACTIVITY_RECOGNITION) ==
@@ -77,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
         
         StepData.getInstance().updateLatestDate();
+
+
 
 //        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 //            @Override
