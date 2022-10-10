@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
+        tabLayout = findViewById(R.id.tabView);
+
         if (ContextCompat.checkSelfPermission(
                 this, Manifest.permission.ACTIVITY_RECOGNITION) ==
                 PackageManager.PERMISSION_DENIED) {
