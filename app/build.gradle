@@ -36,4 +36,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     implementation 'com.google.code.gson:gson:2.8.8'
+    implementation 'joda-time:joda-time:2.9.9'
+    def fragment_version = "1.5.3"
+    implementation "androidx.fragment:fragment:$fragment_version"
 }

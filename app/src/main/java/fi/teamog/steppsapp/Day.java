@@ -1,5 +1,6 @@
 package fi.teamog.steppsapp;
 
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -7,10 +8,9 @@ import java.util.HashMap;
  * @author Leo Härkönen
  */
 public class Day {
-    private HashMap<Integer, Integer> stepsByHour = new HashMap<>();
+    private final HashMap<Integer, Integer> stepsByHour = new HashMap<>();
 
     public Day() {
-
     }
 
     /**
@@ -37,9 +37,27 @@ public class Day {
      */
     public int getDaySteps() {
         int daySteps = 0;
-        for (int hour = 0; hour < 23; hour++) {
+        for (int hour = 0; hour <= 23; hour++) {
             daySteps += this.getHourSteps(hour);
         }
         return daySteps;
+    }
+
+    /**
+     * Adds new steps to the current hour's total.
+     * @param currentLifetimeSteps Current amount of steps from last reboot of the device. This will be compared to the previous total giving the amount of new steps.
+     */
+    public void updateCurrentHourSteps(int currentLifetimeSteps) {
+        int newSteps = currentLifetimeSteps - StepData.getInstance().getStepsSinceReboot();
+        this.addSteps(this.getCurrentHour(), newSteps);
+        StepData.getInstance().setStepsSinceReboot(currentLifetimeSteps);
+    }
+
+    /**
+     * Getter for steps within the current hour today.
+     * @return amount of steps in the current hour
+     */
+    public int getCurrentHour() {
+        return Integer.parseInt(StepData.getInstance().hoursOnlyFormat.format(new Date()));
     }
 }

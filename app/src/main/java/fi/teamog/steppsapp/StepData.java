@@ -2,26 +2,18 @@ package fi.teamog.steppsapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.joda.time.DateTimeComparator;
+
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -37,6 +29,10 @@ public class StepData {
     @SuppressLint("SimpleDateFormat")
     private static final DateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private static final String FILE_NAME = "step_data.json";
+    @SuppressLint("SimpleDateFormat")
+    public final android.icu.text.SimpleDateFormat hoursOnlyFormat = new android.icu.text.SimpleDateFormat("HH");
+    private String latestDate;
+    private int stepsSinceReboot = 0;
 
     /**
      * Access to singleton instance of StepData.
@@ -54,7 +50,9 @@ public class StepData {
      * @param dateIso date in ISO format string, for example "2007-07-17"
      */
     public void addDay(String dateIso) {
-        days.put(dateIso, new Day());
+        if (!days.containsKey(dateIso)) {
+            days.put(dateIso, new Day());
+        }
     }
 
     /**
@@ -63,14 +61,21 @@ public class StepData {
      * @return a Day object or null if object does not exist in the HashMap
      */
     public Day getDay(String dateIso) {
-        return days.getOrDefault(dateIso, null);
+        if (!days.containsKey(dateIso)) {
+            this.addDay(dateIso);
+        }
+        return days.get(dateIso);
     }
 
     /**
      * Adds current day to the HashMap with ISO date as the key and Day object as the value.
      */
     public void addToday() {
-        days.put(isoDateFormat.format(new Date()), new Day());
+        this.addDay(isoDateFormat.format(new Date()));
+    }
+
+    public Day getToday() {
+        return this.getDay(isoDateFormat.format(new Date()));
     }
 
     /**
@@ -86,6 +91,7 @@ public class StepData {
         LocalDate startDate;
         LocalDate endDate;
 
+        // sets startDate to always be the earlier date and endDate to be the later one
         if (firstDate.compareTo(secondDate) > 0) {
             startDate = secondDate;
             endDate = firstDate;
@@ -94,11 +100,12 @@ public class StepData {
             endDate = secondDate;
         }
 
-        LocalDate currentDate = startDate;
+        LocalDate indexDate = startDate;
+
         int totalSteps = 0;
-        while (endDate.compareTo(currentDate) >= 0) {
-            totalSteps += StepData.getInstance().getDay(currentDate.toString()).getDaySteps();
-            currentDate = currentDate.plusDays(1);
+        while (endDate.compareTo(indexDate) >= 0) {
+            totalSteps += StepData.getInstance().getDay(indexDate.toString()).getDaySteps();
+            indexDate = indexDate.plusDays(1);
         }
 
         return totalSteps;
@@ -154,7 +161,56 @@ public class StepData {
      */
     public void loadPreviousData(Context context) {
         TypeToken<HashMap<String, Day>> token = new TypeToken<HashMap<String, Day>>() {};
-        days = new Gson().fromJson(this.readData(context), token.getType());
+        if (!this.readData(context).equals("")) {
+            days = new Gson().fromJson(this.readData(context), token.getType());
+        } else {
+            days = new HashMap<>();
+        }
     }
 
+    /**
+     * Getter for isoDateFormat.
+     * @return isoDateFormat, for example "2007-07-17"
+     */
+    public DateFormat getIsoDateFormat() {
+        return isoDateFormat;
+    }
+
+    /**
+     * Setter for stepsSinceReboot.
+     * @param stepsSinceReboot steps that the device has taken since the last reboot
+     */
+    public void setStepsSinceReboot(int stepsSinceReboot) {
+        this.stepsSinceReboot = stepsSinceReboot;
+    }
+
+    /**
+     * Getter for stepsSinceReboot.
+     * @return stepsSinceReboot
+     */
+    public int getStepsSinceReboot() {
+        return this.stepsSinceReboot;
+    }
+
+    /**
+     * Updates latestDate with current date.
+     */
+    public void updateLatestDate() {
+        latestDate = isoDateFormat.format(new Date());
+    }
+
+    /**
+     * Check if date has changed since last check.
+     * @return true if new date, false otherwise
+     */
+    public boolean checkIfNewDate() {
+        Date todayDate = new Date();
+        Date prevDate = null;
+        try {
+            prevDate = isoDateFormat.parse(latestDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return DateTimeComparator.getDateOnlyInstance().compare(prevDate, todayDate) > 0;
+    }
 }
