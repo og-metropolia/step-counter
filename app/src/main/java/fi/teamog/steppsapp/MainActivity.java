@@ -8,10 +8,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Build;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -63,9 +62,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
          * by the id given to that TextVie
          */
 
-        Intent intent = new Intent(this, Diary.class);
+        //Intent intent = new Intent(this, DiaryActivity.class);
 
-        startActivity(intent);
+        //startActivity(intent);
 
         tv_steps = (TextView)  findViewById (R.id.tv_steps);
 
