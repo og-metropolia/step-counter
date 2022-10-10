@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         StepData.getInstance().loadPreviousData(this);
 
-        //Intent intent = new Intent(this, ReportActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, DiaryActivity.class);
+        startActivity(intent);
 
         tv_steps = findViewById (R.id.tv_steps);
         tv_steps.setText(String.valueOf(StepData.getInstance().getToday().getDaySteps()));
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 PackageManager.PERMISSION_DENIED) {
             requestPermissionLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION);
         }
-        
+
         StepData.getInstance().updateLatestDate();
 
 
