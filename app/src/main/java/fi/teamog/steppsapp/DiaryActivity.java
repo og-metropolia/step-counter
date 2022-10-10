@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class Diary extends AppCompatActivity {
+public class DiaryActivity extends AppCompatActivity {
 
     String mood;
     EditText moodNow;

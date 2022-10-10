@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 PackageManager.PERMISSION_DENIED) {
             requestPermissionLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION);
         }
-        
+
         StepData.getInstance().updateLatestDate();
 
 

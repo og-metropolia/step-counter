@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Diary">
+    android:background="#8AC7DB"
+    tools:context=".DiaryActivity">
 
     <EditText
         android:id="@+id/moodTextMultiLine"
