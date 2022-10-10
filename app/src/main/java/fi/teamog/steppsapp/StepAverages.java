@@ -7,6 +7,13 @@ import java.time.format.DateTimeFormatter;
 
 public class StepAverages {
 
+    private static final StepAverages ourInstance = new StepAverages();
+    public static StepAverages getInstance() {
+        return ourInstance;
+    }
+
+    private StepAverages() {
+    }
     public int getThreeDayAverage() {
         String today = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
         String threeDaysAgo = LocalDate.now().minusDays(3).format(DateTimeFormatter.ISO_LOCAL_DATE);
