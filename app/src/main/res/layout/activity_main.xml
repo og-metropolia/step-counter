@@ -33,12 +33,12 @@
         android:layout_height="181dp"
         android:layout_marginBottom="109dp"
         android:background="@drawable/circle"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ViewHeader"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintTop_toBottomOf="@+id/ViewHeader" />
 
     <!--Askelmittariteksti-->
 
@@ -70,61 +70,46 @@
         app:tint="#03A9F4"
         tools:ignore="ImageContrastCheck" />
 
-    <androidx.fragment.app.FragmentContainerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fragment_container_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="fi.teamog.steppsapp.NavigationFragment" />
-
-<!--    <com.google.android.material.tabs.TabLayout-->
-<!--        android:id="@+id/tabView"-->
-<!--        android:layout_width="409dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="3dp"-->
-<!--        android:layout_marginEnd="3dp"-->
-<!--        android:layout_marginBottom="295dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/imageView"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.0"-->
-<!--        app:tabIndicatorColor="#03A9F4">-->
-
-<!--        &lt;!&ndash;Tabit&ndash;&gt;-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:id="@+id/tabDiary"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/tabDiary" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:id="@+id/tabSteps"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/tabSteps" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:id="@+id/tabReport"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/tabReport" />-->
-
-<!--    </com.google.android.material.tabs.TabLayout>-->
-
     <!--Kengän kuva-->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="93dp"
         android:layout_height="93dp"
+        android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewCircle"
         app:layout_constraintEnd_toEndOf="@+id/imageViewCircle"
         app:layout_constraintStart_toStartOf="@+id/imageViewCircle"
         app:layout_constraintTop_toTopOf="@+id/imageViewCircle"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/runningshoe"
-        android:contentDescription="TODO" />
+        app:srcCompat="@drawable/runningshoe" />
+
+    <Button
+        android:id="@+id/buttonReport"
+        android:layout_width="113dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@color/white"
+        android:text="Raportti"
+        android:onClick="buttonPressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDiary"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonDiary"
+        android:layout_width="113dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@color/white"
+        android:text="Päiväkirja"
+        android:onClick="buttonPressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonReport" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

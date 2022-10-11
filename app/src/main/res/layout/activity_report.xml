@@ -7,35 +7,6 @@
     android:background="@color/user_friendly_blue"
     tools:context=".ReportActivity">
 
-<!--    <com.google.android.material.tabs.TabLayout-->
-<!--        android:id="@+id/tabView"-->
-<!--        android:layout_width="409dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:tabIndicatorColor="#03A9F4"-->
-<!--        tools:layout_editor_absoluteX="1dp">-->
-
-<!--        &lt;!&ndash;Tabit&ndash;&gt;-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:id="@+id/tabDiary"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/tabDiary" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:id="@+id/tabSteps"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/tabSteps" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:id="@+id/tabReport"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/tabReport" />-->
-
-<!--    </com.google.android.material.tabs.TabLayout>-->
-
     <TextView
         android:id="@+id/TextViewThirtyDays"
         android:layout_width="236dp"
@@ -86,4 +57,27 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="293dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keskiarvo"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/TextViewThirtyDays"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="361dp"
+        android:layout_height="441dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/statistiikka" />
 </androidx.constraintlayout.widget.ConstraintLayout>

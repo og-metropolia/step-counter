@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,9 +22,7 @@ import com.google.android.material.tabs.TabLayout;
 
 /**
  * @author Yamir Haque
- * Added SensorEventListener the MainActivity class
- * Implement all the members in the class MainActivity
- * after adding SensorEventListener
+ * Main class for application
  */
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
@@ -53,15 +52,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         StepData.getInstance().loadPreviousData(this);
 
-//        Intent intent = new Intent(this, DiaryActivity.class);
-//        startActivity(intent);
-
         tvSteps = findViewById (R.id.tv_steps);
         tvSteps.setText(String.valueOf(StepData.getInstance().getToday().getDaySteps()));
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-
-//        tabLayout = findViewById(R.id.tabView);
 
         if (ContextCompat.checkSelfPermission(
                 this, Manifest.permission.ACTIVITY_RECOGNITION) ==
@@ -70,44 +64,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
         StepData.getInstance().updateLatestDate();
-
-
-
-//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            /**
-//             * Toiminta joka tapahtuu tabia painaessa
-//             */
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                if (tab.getPosition() == 0) {
-//                    intentMain = new Intent(MainActivity.this, MainActivity.class);
-//
-//                }
-////                if (tab.getPosition() == 1) {
-////                    intentMain = new Intent(MainActivity.this,
-////                            Diary.class);
-////                    MainActivity.this.startActivity(intentMain);
-////                }
-////                if (tab.getPosition() ==2) {
-////                    intentMain = new Intent(MainActivity.this,
-////                            StepData.class);
-////                    MainActivity.this.startActivity(intentMain);
-////                }
-//                /**
-//                 * Ota koodi käyttöön, kun tabien nimemäminen ok
-//                 */
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
 
     }
 
@@ -153,8 +109,22 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             StepData.getInstance().saveData(this);
         }
     }
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
+    }
 
+    public void buttonPressed(View v) {
+
+        switch (v.getId()) {
+            case R.id.buttonReport:
+                Intent intentR = new Intent(this, ReportActivity.class);
+                startActivity(intentR);
+                break;
+            case R.id.buttonDiary:
+                Intent intentD = new Intent(this, DiaryActivity.class);
+                startActivity(intentD);
+                break;
+        }
     }
 }

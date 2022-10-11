@@ -23,7 +23,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 /**
- * Activity thatcollects and displays user's moods.
+ * Activity that collects and displays user's moods.
  * @author Adrian Gashi
  */
 public class DiaryActivity extends AppCompatActivity {
@@ -34,6 +34,10 @@ public class DiaryActivity extends AppCompatActivity {
     ListView lv;
     private final String FILE_NAME = "mood_data.json";
 
+    /**
+     * Its onCreate method in DiaryActivity class.
+      * @param savedInstanceState savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +56,9 @@ public class DiaryActivity extends AppCompatActivity {
                 R.layout.mood_item, //XML item layout
                 moodList));
     }
-
+    /**
+     * Its onPause method in DiaryActivity class.
+     */
     protected void onPause() {
         super.onPause();
         this.saveData(this);
@@ -72,7 +78,7 @@ public class DiaryActivity extends AppCompatActivity {
         }
     }
     /**
-     * Saves step data into a JSON file in internal storage of the phone.
+     * Saves mood list into a JSON file in internal storage of the phone.
      * @param context context
      */
     public void saveData(Context context) {
@@ -87,7 +93,7 @@ public class DiaryActivity extends AppCompatActivity {
     }
 
     /**
-     * Reads saved step data from a JSON file in internal storage of the phone.
+     * Reads saved mood data from a JSON file in internal storage of the phone.
      * @param context context
      * @return data in JSON format String
      */
@@ -114,7 +120,7 @@ public class DiaryActivity extends AppCompatActivity {
     }
 
     /**
-     * Replaces step data in memory with the data found on internal storage of the phone.
+     * Replaces mood data in memory with the data found on internal storage of the phone.
      * @param context context
      */
     public void loadPreviousData(Context context) {
@@ -126,6 +132,10 @@ public class DiaryActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Implements back button in left up corner.
+     * @return true
+     */
     public boolean onSupportNavigateUp() {
         finish();
         return true;
