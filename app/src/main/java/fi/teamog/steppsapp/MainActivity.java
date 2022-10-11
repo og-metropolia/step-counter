@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 }
             });
 
+    /**
+     * Its onCreate method in MainActivity class.
+     * @param savedInstanceState savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +71,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
+    /**
+     * Its onResume method in MainActivity class.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -80,6 +87,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    /**
+     * Its onPause method in MainActivity class.
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -89,6 +99,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //sensorManager.unregisterListener(this);
     }
 
+    /**
+     * Activates when step sensor triggers
+     * @param event SensorEvent that returns step count
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (isMoving) {
@@ -110,10 +124,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    /**
+     * Triggers when accuracy changes
+     * @param sensor step counter sensor
+     * @param i current accuracy
+     */
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
     }
 
+    /**
+     * Triggers when button is pressed
+     * @param v view of the button that was pressed
+     */
     public void buttonPressed(View v) {
 
         switch (v.getId()) {
