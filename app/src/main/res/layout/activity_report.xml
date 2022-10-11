@@ -4,37 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8AC7DB"
+    android:background="@color/user_friendly_blue"
     tools:context=".ReportActivity">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabView"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        app:tabIndicatorColor="#03A9F4"
-        tools:layout_editor_absoluteX="1dp">
+<!--    <com.google.android.material.tabs.TabLayout-->
+<!--        android:id="@+id/tabView"-->
+<!--        android:layout_width="409dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:tabIndicatorColor="#03A9F4"-->
+<!--        tools:layout_editor_absoluteX="1dp">-->
 
-        <!--Tabit-->
+<!--        &lt;!&ndash;Tabit&ndash;&gt;-->
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabDiary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tabDiary" />
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:id="@+id/tabDiary"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/tabDiary" />-->
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabSteps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tabSteps" />
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:id="@+id/tabSteps"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/tabSteps" />-->
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabReport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tabReport" />
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:id="@+id/tabReport"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/tabReport" />-->
 
-    </com.google.android.material.tabs.TabLayout>
+<!--    </com.google.android.material.tabs.TabLayout>-->
 
     <TextView
         android:id="@+id/TextViewThirtyDays"
@@ -45,8 +45,7 @@
         android:minHeight="48dp"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/TextViewLastThreeDays"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/TextViewLastThreeDays"

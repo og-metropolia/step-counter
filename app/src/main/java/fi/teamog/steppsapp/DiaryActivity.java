@@ -126,4 +126,9 @@ public class DiaryActivity extends AppCompatActivity {
         }
     }
 
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+
 }

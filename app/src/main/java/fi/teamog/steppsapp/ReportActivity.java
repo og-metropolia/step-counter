@@ -46,4 +46,9 @@ public class ReportActivity extends AppCompatActivity {
         TextView tvThirtyDayAvg = findViewById(R.id.TextViewLastThreeDaysValue);
         tvThirtyDayAvg.setText(String.valueOf(StepAverages.getInstance().getThirtyDayAverage()));
     }
+
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 }
