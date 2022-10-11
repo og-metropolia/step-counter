@@ -45,8 +45,7 @@
         android:minHeight="48dp"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/TextViewLastThreeDays"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/TextViewLastThreeDays"
