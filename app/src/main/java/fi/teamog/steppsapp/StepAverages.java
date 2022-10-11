@@ -5,6 +5,10 @@ import android.widget.TextView;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * @author Taavi Nätynki
+ * Class for calculating step averages.
+ */
 public class StepAverages {
 
     private static final StepAverages ourInstance = new StepAverages();

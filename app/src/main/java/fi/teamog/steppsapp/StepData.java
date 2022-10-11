@@ -74,6 +74,10 @@ public class StepData {
         this.addDay(isoDateFormat.format(new Date()));
     }
 
+    /**
+     * Getter for today in ISO format String.
+     * @return
+     */
     public Day getToday() {
         return this.getDay(isoDateFormat.format(new Date()));
     }
