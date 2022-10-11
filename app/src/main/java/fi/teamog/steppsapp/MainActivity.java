@@ -21,8 +21,8 @@ import android.widget.Toast;
 import com.google.android.material.tabs.TabLayout;
 
 /**
- * @author Yamir Haque
  * Main class for application
+ * @author Yamir Haque
  */
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {

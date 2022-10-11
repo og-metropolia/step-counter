@@ -8,6 +8,10 @@ import android.widget.TextView;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Activity for displaying step averages for 3 and 30 days.
+ * @author Taavi Nätynki
+ */
 public class ReportActivity extends AppCompatActivity {
 
 
@@ -19,27 +23,6 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
-//        StepData.getInstance().addDay("2022-09-29");
-//        Day day = StepData.getInstance().getDay("2022-09-29");
-//        day.addSteps(6,3000);
-//        day.addSteps(8,2500);
-//        StepData.getInstance().saveData(this);
-//        StepData.getInstance().loadPreviousData(this);
-//
-//        StepData.getInstance().addDay("2022-10-09");
-//        Day day2 = StepData.getInstance().getDay("2022-10-09");
-//        day.addSteps(6,1000);
-//        day.addSteps(8,2500);
-//        StepData.getInstance().saveData(this);
-//        StepData.getInstance().loadPreviousData(this);
-//
-//        StepData.getInstance().addDay("2022-10-10");
-//        Day day3 = StepData.getInstance().getDay("2022-10-10");
-//        day.addSteps(6,1000);
-//        day.addSteps(8,2500);
-//        StepData.getInstance().saveData(this);
-//        StepData.getInstance().loadPreviousData(this);
-
         TextView tvThreeDayAvg = findViewById(R.id.TextViewThirtyDaysValue);
         tvThreeDayAvg.setText(String.valueOf(StepAverages.getInstance().getThreeDayAverage()));
 
@@ -47,6 +30,10 @@ public class ReportActivity extends AppCompatActivity {
         tvThirtyDayAvg.setText(String.valueOf(StepAverages.getInstance().getThirtyDayAverage()));
     }
 
+    /**
+     * Implements back button in left up corner.
+     * @return true
+     */
     public boolean onSupportNavigateUp() {
         finish();
         return true;

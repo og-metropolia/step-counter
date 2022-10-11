@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @author Taavi Nätynki
  * Class for calculating step averages.
+ * @author Taavi Nätynki
  */
 public class StepAverages {
 
