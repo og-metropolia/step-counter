@@ -8,21 +8,21 @@
     tools:context=".ReportActivity">
 
     <TextView
-        android:id="@+id/TextViewThirtyDays"
+        android:id="@+id/TextViewLastThreeDays"
         android:layout_width="236dp"
         android:layout_height="48dp"
-        android:layout_marginStart="11dp"
+        android:layout_marginStart="16dp"
         android:hint="@string/TextViewMonthlyAvg"
         android:minHeight="48dp"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/TextViewLastThreeDays"
+        app:layout_constraintBottom_toTopOf="@+id/TextViewThirtyDays"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/TextViewLastThreeDays"
+        android:id="@+id/TextViewThirtyDays"
         android:layout_width="230dp"
         android:layout_height="51dp"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="16dp"
         android:ems="10"
         android:hint="@string/TextViewLastThreeDays"
         android:inputType="number"
@@ -35,21 +35,25 @@
         android:id="@+id/TextViewThirtyDaysValue"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
         android:text="0"
+        android:gravity="right"
         android:textSize="25sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/TextViewThirtyDays"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/TextViewThirtyDays" />
 
     <TextView
         android:id="@+id/TextViewLastThreeDaysValue"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
         android:text="0"
+        android:gravity="right"
         android:textSize="25sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/TextViewLastThreeDays"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/TextViewLastThreeDays" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
