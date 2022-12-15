@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"fi.teamog.steppsapp","l":"Day"},{"p":"fi.teamog.steppsapp","l":"DiaryActivity"},{"p":"fi.teamog.steppsapp","l":"MainActivity"},{"p":"fi.teamog.steppsapp","l":"ReportActivity"},{"p":"fi.teamog.steppsapp","l":"StepAverages"},{"p":"fi.teamog.steppsapp","l":"StepData"}]
